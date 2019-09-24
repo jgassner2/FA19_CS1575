@@ -4,7 +4,37 @@
 //Instructor: Dr. Morales
 //Date: 9-24-19
 
+template <typename T>
+void ArrayList<T>::grow() {
+  T * tmp; //Get a temporay pointer to a templated object of type T
 
+  //Create new array
+  if  (m_max == 0) {  //Checks for empty/new list
+    tmp =  new T [2];
+  }
+  else {
+    tmp = new T [m_max * 2];
+  }
+
+  //Copy over data
+  for (int k=0; k<m_size; k++) {
+    tmp[k] = m_data[k];
+  }
+
+  //delte old array
+  delete [] m_data;
+
+  //set pointer to newly created and copied array
+  m_data = tmp;
+
+  //set new upper bound
+  if (m_max == 0) {
+    m_max = 2;
+  }
+  else {
+    m_max = m_max * 2;
+  }
+}
 
 
 template <typename T>
