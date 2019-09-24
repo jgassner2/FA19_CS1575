@@ -59,3 +59,13 @@ void ArrayList<T>::clear() {
   m_size = 0;
   m_max = 0;
 }
+
+template <typename T>
+void ArrayList<T>::insert_back(const T& x) {
+  //Check to see if array is full
+  if (m_size == m_max) {
+    grow();
+  }
+  m_data[m_size] = x;
+  m_size++;
+}
