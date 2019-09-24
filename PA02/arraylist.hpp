@@ -45,6 +45,27 @@ ArrayList<T>::~ArrayList() {
   m_max = 0;
 }
 
+template <typename T>
+ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& rhs){
+  //Check for equality or "alias" test
+  if (this != &rhs) {
+    //If we get here, that means we can do the assignment
+    //Delete the old arrayList first
+    delete [] m_data;
+
+    //copy values and create new arrayList for deep copy
+    m_size = rhs.m_size;
+    m_max = rhs.m_max;
+    m_data = new T[m_max];
+
+    //Perform deep copy
+    for (int k=0; k<m_size; k++)
+      m_data[k] = rhs.m_data[k];
+  }
+  return *this;  //Need to return a pointer!!!!!!
+
+}
+
 
 template <typename T>
 int ArrayList<T>::size() const {
