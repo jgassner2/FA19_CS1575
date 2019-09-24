@@ -51,6 +51,15 @@ int ArrayList<T>::size() const {
   return m_size;
 }
 
+template <typename T>
+const T& ArrayList<T>::first() const {
+  //Check to see if empty.  If so, return dummy object
+  if (m_size == 0)
+    return m_errobj;
+  else
+    return m_data[0]; //Return first element
+}
+
 
 template <typename T>
 void ArrayList<T>::clear() {
