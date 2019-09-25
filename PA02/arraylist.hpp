@@ -4,6 +4,8 @@
 //Instructor: Dr. Morales
 //Date: 9-24-19
 
+
+
 template <typename T>
 void ArrayList<T>::grow() {
   T * tmp; //Get a temporay pointer to a templated object of type T
@@ -63,7 +65,6 @@ ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& rhs){
       m_data[k] = rhs.m_data[k];
   }
   return *this;  //Need to return a pointer!!!!!!
-
 }
 
 
@@ -79,6 +80,26 @@ const T& ArrayList<T>::first() const {
     return m_errobj;
   else
     return m_data[0]; //Return first element
+}
+
+template <typename T>
+int ArrayList<T>::find (const T & x) const {
+  bool isFound = false;  //Constants defined above
+  int index;
+
+  for (int k=0; k<m_size; k++) {
+    if (m_data[k] == x)
+    {
+      isFound = true;
+      index = k;
+    }
+  }
+
+  if (isFound)
+    return index;
+  else
+    return -1;
+
 }
 
 
