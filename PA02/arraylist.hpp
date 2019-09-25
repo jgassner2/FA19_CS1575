@@ -122,8 +122,27 @@ void ArrayList<T>::insert_back(const T& x) {
 }
 
 template <typename T>
+void ArrayList<T>::insert(const T& x, int i) {
+  //boundary check
+  if (i < 0  || i > m_max) {
+    return;
+  }
+  //Make sure there's room before shifting data
+  if (m_size == m_max) {
+    grow();
+  }
+  //Shift data in the list right one
+  for (int k=m_size; i<k; k--) {
+    m_data[k] = m_data[k-1];
+  }
+  //Insert element and increase size
+  m_data[i] = x;
+  m_size++;
+}
+
+template <typename T>
 void ArrayList<T>::remove(int i) {
-  //boundary detection/emptu list detection, just returns at the moment.
+  //boundary detection/empty list detection, just returns at the moment.
   if (i < 0 || i > m_size )
     return;
 
