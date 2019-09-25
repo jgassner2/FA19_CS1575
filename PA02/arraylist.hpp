@@ -122,6 +122,24 @@ void ArrayList<T>::insert_back(const T& x) {
 }
 
 template <typename T>
+void ArrayList<T>::remove(int i) {
+  //boundary detection/emptu list detection, just returns at the moment.
+  if (i < 0 || i > m_size )
+    return;
+
+    for (int k=i; k<(m_size-1);k++)  //m_size-1 prevents walking off list
+      m_data[k] = m_data[k+1];
+
+    m_size--;
+
+    //Test to see if list needs to be shrinked
+    if (m_size < (0.25*m_max)) {
+       //shrink();
+    }
+
+}
+
+template <typename T>
 void ArrayList<T>::swap(int i, int k) {
   //TODO - add boundary checks for i and k
   //Create a temporary storage container
