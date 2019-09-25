@@ -123,6 +123,7 @@ void ArrayList<T>::insert_back(const T& x) {
 
 template <typename T>
 void ArrayList<T>::swap(int i, int k) {
+  //TODO - add boundary checks for i and k
   //Create a temporary storage container
   T * temp;
   temp = new T [1];
