@@ -160,7 +160,8 @@ void ArrayList<T>::remove(int i) {
 
 template <typename T>
 void ArrayList<T>::swap(int i, int k) {
-  //TODO - add boundary checks for i and k
+  if (i > m_size || k > m_size)
+    return;
   //Create a temporary storage container
   T * temp;
   temp = new T [1];
