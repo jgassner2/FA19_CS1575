@@ -120,3 +120,16 @@ void ArrayList<T>::insert_back(const T& x) {
   m_data[m_size] = x;
   m_size++;
 }
+
+template <typename T>
+void ArrayList<T>::swap(int i, int k) {
+  //Create a temporary storage container
+  T * temp;
+  temp = new T [1];
+
+  //Copy data into temp container, swap, and cleanup
+  temp[0] = m_data[i];
+  m_data[i] = m_data[k];
+  m_data[k] = temp[0];
+  delete [] temp;
+}
