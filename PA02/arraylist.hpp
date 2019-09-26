@@ -3,7 +3,8 @@
 //Class: CS1575 Sec A
 //Instructor: Dr. Morales
 //Date: 9-24-19
-
+ #include <iostream>
+ using namespace std;
 
 
 template <typename T>
@@ -122,6 +123,23 @@ const T& ArrayList<T>::first() const {
     return m_errobj;
   else
     return m_data[0]; //Return first element
+}
+
+//Set version
+template <typename T>
+T& ArrayList<T>::operator[](int i) {
+  //Boundary check
+  if (i< 0 || i > m_max)
+  {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
+    return m_errobj;
+  }
+  else
+  {
+    //Since [] will be on the left of = we need to return by reference
+    //return & m_data[i]; //Had a pointer conversion error when compiling
+    return  m_data[i];
+  }
 }
 
 template <typename T>
