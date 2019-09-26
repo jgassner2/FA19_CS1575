@@ -56,6 +56,17 @@ void ArrayList<T>::shrink() {
   m_max = m_max/2;
 }
 
+template <typename T>
+ArrayList<T>::ArrayList(int s, const T& x) {
+  //initialze values
+  m_size = s;
+  m_max =s;
+  m_data = new T [m_max];
+
+  //fill the array with copies of 'x'
+  for (int k=0; k<m_size; k++)
+    m_data[k] = x;
+}
 
 template <typename T>
 ArrayList<T>::~ArrayList() {
