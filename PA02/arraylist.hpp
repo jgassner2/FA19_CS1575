@@ -137,8 +137,24 @@ T& ArrayList<T>::operator[](int i) {
   else
   {
     //Since [] will be on the left of = we need to return by reference
+    //Unsure about that. Read it in my old textbook
     //return & m_data[i]; //Had a pointer conversion error when compiling
     return  m_data[i];
+  }
+}
+
+//Get version
+template <typename T>
+const T& ArrayList<T>::operator[](int i) const {
+  //Boundary check
+  if (i< 0 || i > m_max)
+  {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
+    return m_errobj;
+  }
+  else
+  {
+    return m_data[i];
   }
 }
 
