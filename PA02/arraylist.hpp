@@ -85,6 +85,19 @@ ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& rhs){
   return *this;  //Need to return a pointer!!!!!!
 }
 
+template <typename T>
+ArrayList<T>::ArrayList(const ArrayList<T>& cpy) {
+  //Copy over values and create new list
+  m_max = cpy.m_max;
+  m_size = cpy.m_size;
+  m_data = new T [m_size];
+
+  //Perform a deep copy
+  for (int k=0; k<m_size; k++)
+    m_data[k] = cpy.m_data[k];
+
+}
+
 
 template <typename T>
 int ArrayList<T>::size() const {
