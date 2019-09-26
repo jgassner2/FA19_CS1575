@@ -38,6 +38,24 @@ void ArrayList<T>::grow() {
   }
 }
 
+template <typename T>
+void ArrayList<T>::shrink() {
+  //Get tmp pointer and new list
+  T * tmp;
+  tmp = new T [m_max/2];
+
+  //Copy data to new list
+  for (int k=0; k<m_size; k++)
+    tmp[k] = m_data[k];
+
+  //delete old list
+  delete [] m_data;
+
+  //set pointer to new list and set new upper limit
+  m_data = tmp;
+  m_max = m_max/2;
+}
+
 
 template <typename T>
 ArrayList<T>::~ArrayList() {
@@ -152,8 +170,9 @@ void ArrayList<T>::remove(int i) {
     m_size--;
 
     //Test to see if list needs to be shrinked
-    if (m_size < (0.25*m_max)) {
-       //shrink();
+    //Truncation happens but thats okay
+    if (m_size < (m_max/4)) {
+       shrink();
     }
 
 }
