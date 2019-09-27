@@ -3,8 +3,7 @@
 //Class: CS1575 Sec A
 //Instructor: Dr. Morales
 //Date: 9-24-19
- #include <iostream>
- using namespace std;
+
 
 
 template <typename T>
@@ -119,45 +118,10 @@ int ArrayList<T>::size() const {
 template <typename T>
 const T& ArrayList<T>::first() const {
   //Check to see if empty.  If so, return dummy object
-  if (m_size == 0) {
-    cout << "!-- ERROR : PANIC in ARRAYLIST.first()!!  (List is empty)" << endl;
+  if (m_size == 0)
     return m_errobj;
-  }
   else
     return m_data[0]; //Return first element
-}
-
-//Set version
-template <typename T>
-T& ArrayList<T>::operator[](int i) {
-  //Boundary check
-  if (i< 0 || i > m_max)
-  {
-    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
-    return m_errobj;
-  }
-  else
-  {
-    //Since [] will be on the left of = we need to return by reference
-    //Unsure about that. Read it in my old textbook
-    //return & m_data[i]; //Had a pointer conversion error when compiling
-    return  m_data[i];
-  }
-}
-
-//Get version
-template <typename T>
-const T& ArrayList<T>::operator[](int i) const {
-  //Boundary check
-  if (i< 0 || i > m_max)
-  {
-    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
-    return m_errobj;
-  }
-  else
-  {
-    return m_data[i];
-  }
 }
 
 template <typename T>
@@ -203,7 +167,6 @@ template <typename T>
 void ArrayList<T>::insert(const T& x, int i) {
   //boundary check
   if (i < 0  || i > m_max) {
-    cout << "!-- ERROR : PANIC in ARRAYLIST!!.insert()  (index out of bounds)" << endl;
     return;
   }
   //Make sure there's room before shifting data
@@ -222,10 +185,8 @@ void ArrayList<T>::insert(const T& x, int i) {
 template <typename T>
 void ArrayList<T>::remove(int i) {
   //boundary detection/empty list detection, just returns at the moment.
-  if (i < 0 || i > m_size ) {
-    cout << "!-- ERROR : PANIC in ARRAYLIST!!.remove()  (index out of bounds)" << endl;
+  if (i < 0 || i > m_size )
     return;
-  }
 
     for (int k=i; k<(m_size-1);k++)  //m_size-1 prevents walking off list
       m_data[k] = m_data[k+1];
