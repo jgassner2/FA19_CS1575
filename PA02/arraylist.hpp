@@ -203,6 +203,7 @@ template <typename T>
 void ArrayList<T>::insert(const T& x, int i) {
   //boundary check
   if (i < 0  || i > m_max) {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.insert()  (index out of bounds)" << endl;
     return;
   }
   //Make sure there's room before shifting data
