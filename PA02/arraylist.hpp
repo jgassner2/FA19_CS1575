@@ -127,6 +127,37 @@ const T& ArrayList<T>::first() const {
 }
 
 template <typename T>
+T& ArrayList<T>::operator[](int i) {
+  //Boundary check
+  if (i< 0 || i > m_max)
+  {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
+    return m_errobj;
+  }
+  else
+  {
+    //Since [] will be on the left of = we need to return by reference
+    //Unsure about that. Read it in my old textbook
+    //return & m_data[i]; //Had a pointer conversion error when compiling
+    return m_data[i];
+  }
+}
+
+template <typename T>
+const T& ArrayList<T>::operator[](int i) const {
+  //Boundary check
+  if (i< 0 || i > m_max)
+  {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << endl;
+    return m_errobj;
+  }
+  else
+  {
+    return m_data[i];
+  }
+}
+
+template <typename T>
 int ArrayList<T>::find (const T & x) const {
   bool isFound = false;  //Constants defined above
   int index;
