@@ -119,8 +119,10 @@ int ArrayList<T>::size() const {
 template <typename T>
 const T& ArrayList<T>::first() const {
   //Check to see if empty.  If so, return dummy object
-  if (m_size == 0)
+  if (m_size == 0) {
+    cout << "!-- ERROR : PANIC in ARRAYLIST.first()!!  (List is empty)" << endl;
     return m_errobj;
+  }
   else
     return m_data[0]; //Return first element
 }
