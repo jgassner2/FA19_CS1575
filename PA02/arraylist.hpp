@@ -222,8 +222,10 @@ void ArrayList<T>::insert(const T& x, int i) {
 template <typename T>
 void ArrayList<T>::remove(int i) {
   //boundary detection/empty list detection, just returns at the moment.
-  if (i < 0 || i > m_size )
+  if (i < 0 || i > m_size ) {
+    cout << "!-- ERROR : PANIC in ARRAYLIST!!.remove()  (index out of bounds)" << endl;
     return;
+  }
 
     for (int k=i; k<(m_size-1);k++)  //m_size-1 prevents walking off list
       m_data[k] = m_data[k+1];
