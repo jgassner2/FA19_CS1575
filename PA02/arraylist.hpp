@@ -253,3 +253,31 @@ void ArrayList<T>::swap(int i, int k) {
   m_data[k] = temp[0];
   delete [] temp;
 }
+
+template <typename T>
+void ArrayList<T>::append(const ArrayList<T>& alist) {
+  //Make sure there is enough room in the current list to merge
+  if ((m_size + alist.m_size) > m_max)
+    grow();
+
+  //Append the data
+  for(int k=m_size; k<(m_size+alist.m_size); k++)
+    m_data[k] = alist.m_data[k-m_size];
+
+  //Update current data Size
+  m_size = m_size + alist.m_size;
+}
+
+template <typename T>
+void ArrayList<T>::reverse() {
+  T * tmp;
+  tmp = new T [m_max];
+
+  //reverse data
+  for (int k=(m_size-1); k>=0; k--)
+    tmp[m_size-k-1] = m_data[k];
+
+  //delete old array
+  delete [] m_data;
+  m_data = tmp;
+}
