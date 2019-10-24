@@ -14,7 +14,7 @@ LinkedList<T>::LinkedList(){
 
 template <typename T>
 LinkedList<T>::~LinkedList(){
-
+std::cout << "THe Default Destructor has finished" << std::endl;  //Just for testing
 }
 
 template <typename T>
@@ -30,4 +30,31 @@ bool LinkedList<T>::isEmpty() const {
   else{
     return false;
   }
+}
+
+
+
+
+
+/*
+template <typename T>
+LinkedList<T>& operator<< (std::ostream& out, const LinkedList<T>& list)
+{
+  LLNode<T> * tmp = list.m_head;
+  out << "[ ";
+
+  out << "]";
+  delete tmp;
+  return out;
+}
+*/
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const LinkedList<T>& list)
+{
+  //LLNode<T> * tmp = list.m_head;
+  out << "[ ";
+
+  out << "]";
+  //delete tmp;
+  return out;
 }
