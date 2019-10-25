@@ -32,6 +32,16 @@ bool LinkedList<T>::isEmpty() const {
   }
 }
 
+template <typename T>
+const LLNode<T> * LinkedList<T>::getFirstPtr() const {
+  if (m_size == 0) {
+    return NULL;
+  }
+  else {
+    return m_head;
+  }
+}
+
 
 
 
@@ -51,7 +61,9 @@ LinkedList<T>& operator<< (std::ostream& out, const LinkedList<T>& list)
 template <typename T>
 std::ostream& operator<< (std::ostream& out, const LinkedList<T>& list)
 {
-  //LLNode<T> * tmp = list.m_head;
+  //LLNode<T> * tmp = list.m_head;  //m_head is private, need accessor
+  //LLNode<T> * tmp = list.getFirstPtr();  //Wont' work unless it's const pointer
+  const LLNode<T> * tmp = list.getFirstPtr(); //ASK!!!!
   out << "[ ";
 
   out << "]";
