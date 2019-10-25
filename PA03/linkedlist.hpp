@@ -65,8 +65,11 @@ std::ostream& operator<< (std::ostream& out, const LinkedList<T>& list)
   //LLNode<T> * tmp = list.getFirstPtr();  //Wont' work unless it's const pointer
   const LLNode<T> * tmp = list.getFirstPtr(); //ASK!!!!
   out << "[ ";
-
+  for (int i=0; i<list.size(); i++){
+    out << tmp->m_data << ", "; //Access LLNode actual data
+    tmp->m_next; //move the tmp pointer to point to the next node's member data for the next round
+  }
   out << "]";
-  //delete tmp;
+  delete tmp;
   return out;
 }
