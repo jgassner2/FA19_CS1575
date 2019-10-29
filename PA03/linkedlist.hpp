@@ -72,11 +72,17 @@ void LinkedList<T>::insert_front(const T& x) {
   tmp->m_data = x;  //Set the LLNode's data equal to 'x'
   tmp->m_next = m_head; //Set the LLNode's next pointer to point to the head of the list
   m_head = tmp; //Make the original head point to the new head, breaking the old link.
+
+  //Since there is no sentinel node, this starts the m_back pointer to follow
+  //the 'last' element
+  if (m_size == 0) {
+    m_back = m_head;  
+  }
   m_size++; //Increment the size of the list.
   //delete tmp; //If this is here, segfault (core dump)
   //tmp = NULL;  //Needed?
-
 }
+
 
 
 
