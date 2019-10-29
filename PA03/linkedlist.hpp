@@ -76,11 +76,28 @@ void LinkedList<T>::insert_front(const T& x) {
   //Since there is no sentinel node, this starts the m_back pointer to follow
   //the 'last' element
   if (m_size == 0) {
-    m_back = m_head;  
+    m_back = m_head;
   }
   m_size++; //Increment the size of the list.
   //delete tmp; //If this is here, segfault (core dump)
   //tmp = NULL;  //Needed?
+}
+
+template <typename T>
+void LinkedList<T>::insert_back(const T& x) {
+  //Since there's no sentinel node for empty lists, this starts one.
+  //The insert_front() takes care of the pointers for it.
+  if (m_size == 0) {
+    insert_front(x);
+  }
+  else {
+    LLNode<T> * tmp;  //Create LLNode tmp pointer
+    tmp = new LLNode<T>;  //Create new LLNode
+    tmp->m_data = x;  //Set the data elelment into the new node
+    m_back->m_next = tmp; //Set the old list's element's pointer to the new last element
+    m_back = tmp; //Make the new node the last element in the list
+    m_size++;  //Increase the size
+  }
 }
 
 
