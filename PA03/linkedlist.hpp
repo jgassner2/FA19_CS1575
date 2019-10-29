@@ -14,7 +14,14 @@ LinkedList<T>::LinkedList(){
 
 template <typename T>
 LinkedList<T>::~LinkedList(){
-std::cout << "THe Default Destructor has finished" << std::endl;  //Just for testing
+  LLNode<T> * tmp;
+  for(int i=0; i<m_size; i++) {
+    tmp = m_head; //Set tmp pointer to element to be deleted
+    m_head = m_head->m_next; //Point m_head to the next element in the list
+    delete tmp;  //Remove element in list.
+  }
+  tmp = NULL;  //Not needed but good practice
+//std::cout << "THe Default Destructor has finished" << std::endl;  //Just for testing
 }
 
 template <typename T>
@@ -45,13 +52,14 @@ const LLNode<T> * LinkedList<T>::getFirstPtr() const {
 //Basic Mutator
 template <typename T>
 void LinkedList<T>::insert_front(const T& x) {
-  LLNode<T> * tmp;
-  tmp = new LLNode<T>;
-  tmp->m_data = x;
-  tmp->m_next = m_head;
-  m_head = tmp;
-  m_size++;
+  LLNode<T> * tmp;  //Create a tmp LLNode pointer
+  tmp = new LLNode<T>;  //Create a new LLNode
+  tmp->m_data = x;  //Set the LLNode's data equal to 'x'
+  tmp->m_next = m_head; //Set the LLNode's next pointer to point to the head of the list
+  m_head = tmp; //Make the original head point to the new head, breaking the old link.
+  m_size++; //Increment the size of the list.
   //delete tmp; //If this is here, segfault (core dump)
+  //tmp = NULL;  //Needed?
 
 }
 
