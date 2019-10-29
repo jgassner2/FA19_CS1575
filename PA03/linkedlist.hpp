@@ -51,6 +51,21 @@ const LLNode<T> * LinkedList<T>::getFirstPtr() const {
 
 //Basic Mutator
 template <typename T>
+void LinkedList<T>::clear() {
+  LLNode<T> * tmp;
+
+  for (int i=0; i<m_size; i++) {
+    tmp = m_head; //Set tmp to element needing to be deleted
+    m_head = m_head->m_next; //Set head pointer to next element in the list
+    delete tmp;  //Remove element from the list
+  }
+  //Reset everything
+  m_size = 0;
+  m_head = m_back = NULL;
+  tmp = NULL; //Avoid dangling pointer.
+}
+
+template <typename T>
 void LinkedList<T>::insert_front(const T& x) {
   LLNode<T> * tmp;  //Create a tmp LLNode pointer
   tmp = new LLNode<T>;  //Create a new LLNode
