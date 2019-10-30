@@ -59,6 +59,16 @@ const LLNode<T> * LinkedList<T>::getFirstPtr() const {
   }
 }
 
+template <typename T>
+LLNode<T> * LinkedList<T>::getLastPtr() {
+  if (m_size == 0) {
+    return NULL;
+  }
+  else {
+    return m_back;
+  }
+}
+
 //Basic Mutator
 template <typename T>
 void LinkedList<T>::clear() {
