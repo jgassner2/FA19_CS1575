@@ -40,6 +40,16 @@ bool LinkedList<T>::isEmpty() const {
 }
 
 template <typename T>
+LLNode<T> * LinkedList<T>::getFirstPtr() {
+  if (m_size == 0) {
+    return NULL;
+  }
+  else {
+    return m_head;
+  }
+}
+
+template <typename T>
 const LLNode<T> * LinkedList<T>::getFirstPtr() const {
   if (m_size == 0) {
     return NULL;
