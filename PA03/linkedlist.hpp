@@ -69,6 +69,22 @@ LLNode<T> * LinkedList<T>::getLastPtr() {
   }
 }
 
+template <typename T>
+LLNode<T>* LinkedList<T>::getAtPtr(int i) {
+  //Check for out-of-bounds or empty list
+  if(m_size==0 || i<0 || i>m_size) {
+    return NULL;
+  }
+  else {
+    LLNode<T> * tmp;
+    tmp = m_head;  //Point tmp pointer to the begining of list, covers i=0 case
+    for(int k=0; k<(i-1); k++) {
+      tmp = tmp->m_next; //move tmp up one to return the correct element
+    }
+    return tmp;
+  }
+}
+
 //Basic Mutator
 template <typename T>
 void LinkedList<T>::clear() {
