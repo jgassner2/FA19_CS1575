@@ -136,6 +136,25 @@ void LinkedList<T>::insert_back(const T& x) {
   }
 }
 
+template <typename T>
+void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
+
+}
+
+template <typename T>
+void LinkedList<T>::remove(LLNode<T>* pos) {
+  //in a way we don't delete "pos", but overwrite its contents
+  //and jump over the next node ahead.  Follow the memory since LL
+  //only go one way.
+
+  LLNode<T> * tmp;
+  tmp = pos->m_next; //tmp now holds the link ahead
+  pos->m_data = tmp->m_data; //Overwrite data from one element ahead
+  pos->m_next = tmp->m_next; //Jump over the element ahead of "pos"
+  delete tmp;
+  m_size--;
+}
+
 
 
 
