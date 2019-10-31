@@ -138,7 +138,12 @@ void LinkedList<T>::insert_back(const T& x) {
 
 template <typename T>
 void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
-
+  LLNode<T> * tmp;
+  tmp = new LLNode<T>;
+  tmp->m_data = x; //Insert 'x' into new node
+  tmp->m_next = pos->m_next; //Prep the new node to point to the next list element
+  pos->m_next = tmp; //Officially connect the node
+  m_size++;
 }
 
 template <typename T>
@@ -176,6 +181,6 @@ std::ostream& operator<< (std::ostream& out, const LinkedList<T>& list)
 
   out << "]";
 
-  delete tmp;
+  //delete tmp;
   return out;
 }
