@@ -165,8 +165,35 @@ void LinkedList<T>::remove_front() {
     delete tmp; //remove the old front of the list
     m_size--;
   }
-
 }
+
+template <typename T>
+void LinkedList<T>::remove_back() {
+  //Checking for an empty list
+  if (m_size == 0) {
+    std::cout << std::endl << "Empty list. Nothing to remove." << std::endl;
+    return;
+  }
+  //Check for a list size of 1
+  else if (m_size == 1) {
+    clear();
+    return;
+  }
+  else {
+    LLNode<T> * tmp;
+    tmp = m_back; //Prepare back node for deletion
+    m_back = m_head; //Move m_back so the new end of the list can be assigned next
+    for(int i=0; i<(m_size-2); i++) {
+      m_back = m_back->m_next;  //Move the back pointer along until the new end is reached
+    }
+    //m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
+    delete tmp; //remove the old front of the list
+    m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
+
+    m_size--;
+  }
+}
+
 
 template <typename T>
 void LinkedList<T>::remove(LLNode<T>* pos) {
@@ -185,7 +212,7 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   m_size--;
   */
 
-  //This is for the "remove next one" for the hoemwork
+  //This is for the "remove next one" for the homework
   //See Test03
   //PANIC YOU CAN POINT OFF THE LIST!!!!!
   LLNode<T> * tmp;
