@@ -147,6 +147,28 @@ void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
 }
 
 template <typename T>
+void LinkedList<T>::remove_front() {
+  //Checking for an empty list
+  if (m_size == 0) {
+    std::cout << std::endl << "Empty list. Nothing to remove." << std::endl;
+    return;
+  }
+  //Check for a list size of 1
+  else if (m_size == 1) {
+    clear();
+    return;
+  }
+  else {
+    LLNode<T> * tmp;
+    tmp = m_head; //Set the tmp pointer to the front node for deletion
+    m_head = m_head->m_next;  //Point the m_head ahead one, making it the new beginning
+    delete tmp; //remove the old front of the list
+    m_size--;
+  }
+
+}
+
+template <typename T>
 void LinkedList<T>::remove(LLNode<T>* pos) {
   //in a way we don't delete "pos", but overwrite its contents
   //and jump over the next node ahead.  Follow the memory since LL
