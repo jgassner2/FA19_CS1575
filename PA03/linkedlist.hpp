@@ -78,7 +78,8 @@ LLNode<T>* LinkedList<T>::getAtPtr(int i) {
   else {
     LLNode<T> * tmp;
     tmp = m_head;  //Point tmp pointer to the begining of list, covers i=0 case
-    for(int k=0; k<(i-1); k++) {
+    //for(int k=0; k<(i-1); k++) {
+    for(int k=0; k<i; k++) {
       tmp = tmp->m_next; //move tmp up one to return the correct element
     }
     return tmp;
@@ -167,6 +168,7 @@ void LinkedList<T>::remove_front() {
   }
 }
 
+
 template <typename T>
 void LinkedList<T>::remove_back() {
   //Checking for an empty list
@@ -180,17 +182,31 @@ void LinkedList<T>::remove_back() {
     return;
   }
   else {
+    /*
+    //This won't work. You have to move m_back first to the one before the last
+    //Node then assign m_next to tmp and delete.  Otherwise it just crashes.
+    //Not sure why at the moment
     LLNode<T> * tmp;
     tmp = m_back; //Prepare back node for deletion
     m_back = m_head; //Move m_back so the new end of the list can be assigned next
     for(int i=0; i<(m_size-2); i++) {
       m_back = m_back->m_next;  //Move the back pointer along until the new end is reached
     }
-    //m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
+    m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
+    delete tmp; //remove the old front of the list
+    m_size--;
+    */
+
+    LLNode<T> * tmp;
+    m_back = m_head; //Move m_back so the new end of the list can be assigned next
+    for(int i=0; i<(m_size-2); i++) {
+      m_back = m_back->m_next;  //Move the back pointer along until the new end is reached
+    }
+    tmp = m_back->m_next;  //Prepare back node for deletion
     delete tmp; //remove the old front of the list
     m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
-
     m_size--;
+
   }
 }
 
@@ -222,8 +238,10 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   delete tmp;
   pos->m_next = keep; //Re-join the link
   m_size--;
-
 }
+
+
+//Complex operators
 
 
 
