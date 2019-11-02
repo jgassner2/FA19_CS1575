@@ -69,10 +69,11 @@ LLNode<T> * LinkedList<T>::getLastPtr() {
   }
 }
 
+
 template <typename T>
 LLNode<T>* LinkedList<T>::getAtPtr(int i) {
   //Check for out-of-bounds or empty list
-  if(m_size==0 || i<0 || i>m_size) {
+  if(m_size==0 || i<0 || i>=m_size) {
     return NULL;
   }
   else {
@@ -219,18 +220,19 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
 
   //Code below removes based on index at zero
   //Homework removes one ahead for some reason
-  /*
+
   LLNode<T> * tmp;
   tmp = pos->m_next; //tmp now holds the link ahead
   pos->m_data = tmp->m_data; //Overwrite data from one element ahead
   pos->m_next = tmp->m_next; //Jump over the element ahead of "pos"
   delete tmp;
   m_size--;
-  */
+
 
   //This is for the "remove next one" for the homework
   //See Test03
   //PANIC YOU CAN POINT OFF THE LIST!!!!!
+  /*
   LLNode<T> * tmp;
   LLNode<T> * keep;
   tmp = pos->m_next; //tmp now holds the link ahead
@@ -238,6 +240,7 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   delete tmp;
   pos->m_next = keep; //Re-join the link
   m_size--;
+  */
 }
 
 
