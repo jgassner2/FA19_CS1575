@@ -72,20 +72,22 @@ LLNode<T> * LinkedList<T>::getLastPtr() {
 
 template <typename T>
 LLNode<T>* LinkedList<T>::getAtPtr(int i) {
+  LLNode<T> * tmp;
+
   //Check for out-of-bounds or empty list
   if(m_size==0 || i<0 || i>=m_size) {
-    return NULL;
+    tmp = NULL;
   }
   else {
-    LLNode<T> * tmp;
     tmp = m_head;  //Point tmp pointer to the begining of list, covers i=0 case
-    //for(int k=0; k<(i-1); k++) {
     for(int k=0; k<i; k++) {
       tmp = tmp->m_next; //move tmp up one to return the correct element
     }
-    return tmp;
   }
+  
+  return tmp;
 }
+
 
 //Basic Mutator
 template <typename T>
@@ -138,6 +140,7 @@ void LinkedList<T>::insert_back(const T& x) {
   }
 }
 
+
 template <typename T>
 void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
   LLNode<T> * tmp;
@@ -147,6 +150,7 @@ void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
   pos->m_next = tmp; //Officially connect the node
   m_size++;
 }
+
 
 template <typename T>
 void LinkedList<T>::remove_front() {
@@ -170,6 +174,7 @@ void LinkedList<T>::remove_front() {
 }
 
 
+
 template <typename T>
 void LinkedList<T>::remove_back() {
   //Checking for an empty list
@@ -183,20 +188,20 @@ void LinkedList<T>::remove_back() {
     return;
   }
   else {
-    /*
+
     //This won't work. You have to move m_back first to the one before the last
     //Node then assign m_next to tmp and delete.  Otherwise it just crashes.
     //Not sure why at the moment
-    LLNode<T> * tmp;
-    tmp = m_back; //Prepare back node for deletion
-    m_back = m_head; //Move m_back so the new end of the list can be assigned next
-    for(int i=0; i<(m_size-2); i++) {
-      m_back = m_back->m_next;  //Move the back pointer along until the new end is reached
-    }
-    m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
-    delete tmp; //remove the old front of the list
-    m_size--;
-    */
+    //LLNode<T> * tmp;
+    //tmp = m_back; //Prepare back node for deletion
+    //m_back = m_head; //Move m_back so the new end of the list can be assigned next
+    //for(int i=0; i<(m_size-2); i++) {
+    //  m_back = m_back->m_next;  //Move the back pointer along until the new end is reached
+    //}
+    //m_back->m_next = NULL; //IMPORTANT to avoid a dangling pointer.
+    //delete tmp; //remove the old front of the list
+    //m_size--;
+
 
     LLNode<T> * tmp;
     m_back = m_head; //Move m_back so the new end of the list can be assigned next
@@ -211,7 +216,8 @@ void LinkedList<T>::remove_back() {
   }
 }
 
-
+//Disabled for now
+/*
 template <typename T>
 void LinkedList<T>::remove(LLNode<T>* pos) {
   //in a way we don't delete "pos", but overwrite its contents
@@ -232,7 +238,6 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   //This is for the "remove next one" for the homework
   //See Test03
   //PANIC YOU CAN POINT OFF THE LIST!!!!!
-  /*
   LLNode<T> * tmp;
   LLNode<T> * keep;
   tmp = pos->m_next; //tmp now holds the link ahead
@@ -240,9 +245,8 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   delete tmp;
   pos->m_next = keep; //Re-join the link
   m_size--;
-  */
 }
-
+*/
 
 //Complex operators
 
