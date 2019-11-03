@@ -12,6 +12,7 @@ LinkedList<T>::LinkedList(){
   m_size = 0;
 }
 
+//Big Three
 template <typename T>
 LinkedList<T>::~LinkedList(){
   LLNode<T> * tmp;
@@ -23,6 +24,8 @@ LinkedList<T>::~LinkedList(){
   tmp = NULL;  //Not needed but good practice
 //std::cout << "THe Default Destructor has finished" << std::endl;  //Just for testing
 }
+
+
 
 template <typename T>
 int LinkedList<T>::size() const {
@@ -84,7 +87,7 @@ LLNode<T>* LinkedList<T>::getAtPtr(int i) {
       tmp = tmp->m_next; //move tmp up one to return the correct element
     }
   }
-  
+
   return tmp;
 }
 
@@ -140,15 +143,17 @@ void LinkedList<T>::insert_back(const T& x) {
   }
 }
 
-
+//Disabled for now
 template <typename T>
 void LinkedList<T>::insert(const T& x, LLNode<T>* pos){
+  /*
   LLNode<T> * tmp;
   tmp = new LLNode<T>;
   tmp->m_data = x; //Insert 'x' into new node
   tmp->m_next = pos->m_next; //Prep the new node to point to the next list element
   pos->m_next = tmp; //Officially connect the node
   m_size++;
+  */
 }
 
 
@@ -217,9 +222,10 @@ void LinkedList<T>::remove_back() {
 }
 
 //Disabled for now
-/*
+
 template <typename T>
 void LinkedList<T>::remove(LLNode<T>* pos) {
+  /*
   //in a way we don't delete "pos", but overwrite its contents
   //and jump over the next node ahead.  Follow the memory since LL
   //only go one way.
@@ -245,8 +251,9 @@ void LinkedList<T>::remove(LLNode<T>* pos) {
   delete tmp;
   pos->m_next = keep; //Re-join the link
   m_size--;
+  */
 }
-*/
+
 
 //Complex operators
 
