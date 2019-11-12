@@ -12,5 +12,12 @@ int main()
 {
 
   cout << endl << "End Program." << endl;
+  ArrQueue<int> test;
+
+  if (test.isEmpty())
+    cout << endl << "Function works." << endl;
+
+
+
   return 0;
 }
