@@ -64,6 +64,8 @@ t.enqueue(1);
 
 
 cout << "Queue: "  << t << endl;
+t.clear();
+cout << "Queue: "  << t << endl;
 
 
 
@@ -107,7 +109,10 @@ void ArrQueue<T>::dequeue() {
 
 template <typename T>
 void ArrQueue<T>::clear() {
-
+  delete [] m_data;
+  m_data = NULL;
+  m_size = 0;
+  m_max = 0;
 }
 
 template <typename T>
