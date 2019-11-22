@@ -44,19 +44,16 @@ int main()
 {
   ArrQueue<int> t, p;
 
-t.front();
+t.back();
 
 for (int i=0; i<10; i++)
   t.enqueue(i);
 
-  p.enqueue(t.front());
-
+cout << t << endl;
+p.enqueue(t.back());
 cout << p << endl;
 
 
-
-
-cout << "Queue: "  << t << endl;
 
 cout << endl << "End Program" << endl;
   return 0;
@@ -87,6 +84,17 @@ const T& ArrQueue<T>::front() const throw (Oops) {
 
 template <typename T>
 const T& ArrQueue<T>::back() const throw (Oops) {
+  try {
+    if (m_size == 0) {
+      throw Oops("x");
+    }
+    else {
+      return m_data[m_size-1];
+    }
+  }
+  catch (Oops) {
+    cout << "Empty Queue!!!!" << endl;
+  }
 
 }
 
