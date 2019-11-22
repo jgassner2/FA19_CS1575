@@ -22,6 +22,7 @@ class ArrQueue : public AbstractQueue<T>
     T * m_data;
   public:
   ArrQueue(): m_size(0), m_max(0), m_data(NULL) {};
+  ArrQueue(int s, const T& x);
   bool isEmpty() const;
   const T& front() const throw (Oops);
   const T& back() const throw (Oops);
@@ -41,7 +42,7 @@ std::ostream& operator<< (std::ostream& out, const ArrQueue<T>& list);
 //MAIN
 int main()
 {
-  ArrQueue<int> t;
+  ArrQueue<int> t(9,3);
 
   if(t.isEmpty())
     cout << endl <<"Banana Pancake" << endl;
@@ -121,10 +122,24 @@ ArrQueue<T>::~ArrQueue() {
   m_data = NULL;
   m_size = 0;
   m_max = 0;
-cout << endl << "Default destructor called." << endl;
 }
 
 //Function defintions for my Functions
+template <typename T>
+ArrQueue<T>::ArrQueue(int s, const T& x) {
+  //initialze values
+  m_size = s;
+  m_max =s;
+  m_data = new T [m_max];
+
+  //fill the array with copies of 'x'
+  for (int k=0; k<m_size; k++)
+    m_data[k] = x;
+}
+
+
+
+
 template <typename T>
 void ArrQueue<T>::grow() {
   T * tmp; //Get a temporay pointer to a templated object of type T
