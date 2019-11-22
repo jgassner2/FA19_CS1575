@@ -42,30 +42,21 @@ std::ostream& operator<< (std::ostream& out, const ArrQueue<T>& list);
 //MAIN
 int main()
 {
-  ArrQueue<int> t;
+  ArrQueue<int> t, p;
 
-  t.dequeue();
-  cout << endl << t;
+t.front();
 
-  if(t.isEmpty())
-    cout << endl <<"Banana Pancake" << endl;
-cout << endl << "Queue Size: " << t.size() << endl;
-
-for (int i=0; i<100; i++)
+for (int i=0; i<10; i++)
   t.enqueue(i);
 
+  p.enqueue(t.front());
 
-cout << "Queue: "  << t << endl;
-for (int i=0; i<110; i++) {
-  t.dequeue();
-  cout << t << endl;
-}
+cout << p << endl;
 
-
-cout << "Queue: "  << t << endl;
 
 
 
+cout << "Queue: "  << t << endl;
 
 cout << endl << "End Program" << endl;
   return 0;
@@ -81,7 +72,17 @@ bool ArrQueue<T>::isEmpty() const {
 
 template <typename T>
 const T& ArrQueue<T>::front() const throw (Oops) {
-
+  try {
+    if (m_size == 0) {
+      throw Oops("x");
+    }
+    else {
+      return m_data[0];
+    }
+  }
+  catch (Oops) {
+    cout << "Empty Queue!!!!" << endl;
+  }
 }
 
 template <typename T>
