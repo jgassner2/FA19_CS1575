@@ -28,6 +28,9 @@ class ArrQueue : public AbstractQueue<T>
   void clear();
   ~ArrQueue();
 
+  //My Functions
+  void grow();
+  int size() const;
 
 
 };
@@ -40,6 +43,11 @@ int main()
 
   if(t.isEmpty())
     cout << endl <<"Banana Pancake" << endl;
+cout << endl << "Queue Size: " << t.size() << endl;
+t.enqueue(1);
+cout << endl << "Queue Size: " << t.size() << endl;
+
+
 
 
 cout << endl << "End Program" << endl;
@@ -66,7 +74,12 @@ const T& ArrQueue<T>::back() const throw (Oops) {
 
 template <typename T>
 void ArrQueue<T>::enqueue(const T& x) {
-
+  //Check to see if array is full
+  if (m_size == m_max) {
+    grow();
+  }
+  m_data[m_size] = x;
+  m_size++;
 }
 
 template <typename T>
@@ -86,4 +99,42 @@ ArrQueue<T>::~ArrQueue() {
   m_size = 0;
   m_max = 0;
 cout << endl << "Default destructor called." << endl;
+}
+
+//Function defintions for my Functions
+template <typename T>
+void ArrQueue<T>::grow() {
+  T * tmp; //Get a temporay pointer to a templated object of type T
+
+  //Create new array
+  if  (m_max == 0) {  //Checks for empty/new list
+    tmp =  new T [2];
+  }
+  else {
+    tmp = new T [m_max * 2];
+  }
+
+  //Copy over data
+  for (int k=0; k<m_size; k++) {
+    tmp[k] = m_data[k];
+  }
+
+  //delte old array
+  delete [] m_data;
+
+  //set pointer to newly created and copied array
+  m_data = tmp;
+
+  //set new upper bound
+  if (m_max == 0) {
+    m_max = 2;
+  }
+  else {
+    m_max = m_max * 2;
+  }
+}
+
+template <typename T>
+int ArrQueue<T>::size() const {
+  return m_size;
 }
