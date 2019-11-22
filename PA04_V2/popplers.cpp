@@ -19,13 +19,14 @@ class ArrQueue : public AbstractQueue<T>
     int m_max;
     T * m_data;
   public:
+  ArrQueue(): m_size(0), m_max(0), m_data(NULL) {};
   bool isEmpty() const;
   const T& front() const throw (Oops);
   const T& back() const throw (Oops);
   void enqueue(const T& x);
   void dequeue();
   void clear();
-  //~ArrQueue();
+  ~ArrQueue();
 
 
 
@@ -47,8 +48,10 @@ cout << endl << "End Program" << endl;
 
 template <typename T>
 bool ArrQueue<T>::isEmpty() const {
-  //Not finished just making sure it is working
-return true;
+  if (m_size == 0)
+    return true;
+  else
+    return false;
 }
 
 template <typename T>
@@ -74,4 +77,13 @@ void ArrQueue<T>::dequeue() {
 template <typename T>
 void ArrQueue<T>::clear() {
 
+}
+
+template <typename T>
+ArrQueue<T>::~ArrQueue() {
+  delete [] m_data;
+  m_data = NULL;
+  m_size = 0;
+  m_max = 0;
+cout << endl << "Default destructor called." << endl;
 }
