@@ -9,12 +9,14 @@
 #include "abstractqueue.h"
 using namespace std;
 
+
+
 //For now, placing the queue class here in main program for simplicity.
 //Will move to a seperate file once things are working.
 template <typename T>
 class ArrQueue : public AbstractQueue<T>
 {
-  private:
+  public:
     int m_size;
     int m_max;
     T * m_data;
@@ -32,9 +34,9 @@ class ArrQueue : public AbstractQueue<T>
   void grow();
   int size() const;
 
-
 };
-
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const ArrQueue<T>& list);
 
 //MAIN
 int main()
@@ -46,6 +48,22 @@ int main()
 cout << endl << "Queue Size: " << t.size() << endl;
 t.enqueue(1);
 cout << endl << "Queue Size: " << t.size() << endl;
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+t.enqueue(1);
+
+
+cout << "Queue: "  << t << endl;
 
 
 
@@ -137,4 +155,19 @@ void ArrQueue<T>::grow() {
 template <typename T>
 int ArrQueue<T>::size() const {
   return m_size;
+}
+
+
+
+
+// Purpose: prints an ArrayQueue
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const ArrQueue<T>& alist)
+{
+  out << "[ ";
+  for (int i=0; i < alist.m_size; i++){
+    out << alist.m_data[i] << ", ";
+  }
+  out << "]";
+  return out;
 }
