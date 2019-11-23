@@ -6,7 +6,11 @@
 
 
 #include <iostream>
+//#include <vector>
+#include <string>
+#include <sstream>
 #include "abstractqueue.h"
+
 using namespace std;
 
 
@@ -34,24 +38,63 @@ class ArrQueue : public AbstractQueue<T>
   //My Functions
   void grow();
   int size() const;
+  T& operator[](int i);
 
 };
 template <typename T>
 std::ostream& operator<< (std::ostream& out, const ArrQueue<T>& list);
 
+//Customer class
+class Customers{
+  public:
+    string m_name;
+    int m_numDesiredPopplers;
+    int m_numEaten;
+
+};
+
 //MAIN
 int main()
 {
-  ArrQueue<int> t, p;
+  ArrQueue<Customers> FisheyJoes;  //using the vector for now as a queue
+  //std::vector<Customers> FisheyJoes; //For checking front-end
+  int numCustomers, fewestPopplers, mostPopplers;
+  string ateLeast, ateMost;
+  Customers tmp;
 
-t.back();
+  //Get the customers lined up!
 
-for (int i=0; i<10; i++)
-  t.enqueue(i);
+  //Below is one way but I am not sure it is a gurantee about type conversion.
 
-cout << t << endl;
-p.enqueue(t.back());
-cout << p << endl;
+  cin >>numCustomers;
+  for (int k=0; k<=numCustomers; k++) {
+    cin >> tmp.m_name >> tmp.m_numDesiredPopplers;
+    FisheyJoes.enqueue(tmp);
+  }
+
+//Below is buggy
+/*
+ string inputString;
+ cin >> numCustomers;
+ for (int k=0; k<=numCustomers; k++) {
+  getline(cin,inputString);
+  int pos = inputString.find(" ");
+
+  //Start placing the data into the temporary customer placeholder
+  tmp.m_name = inputString.substr(0,pos);
+  string numToConvert = inputString.substr(pos+1);  //Get the number from the input
+  stringstream woot(numToConvert);  //Using stringstream class for conversion
+  woot >> tmp.m_numDesiredPopplers;  //Store it as an integer.  I guess the above would have worked.
+
+  //Placing the customers in the queue
+  FisheyJoes.enqueue(tmp);
+ }
+*/
+for (int k=0; k<numCustomers; k++) {
+  cout << FisheyJoes[k].m_name << " " << FisheyJoes[k].m_numDesiredPopplers << endl;
+}
+
+
 
 
 
@@ -191,6 +234,22 @@ template <typename T>
 int ArrQueue<T>::size() const {
   return m_size;
 }
+
+template <typename T>
+T& ArrQueue<T>::operator[](int i) {
+  try {
+    if (i< 0 || i > m_max) {
+      throw Oops("x");
+    }
+    else {
+      return m_data[i];
+    }
+  }
+  catch (Oops) {
+    cout << "Empty Queue!!!!" << endl;
+  }
+}
+
 
 
 
