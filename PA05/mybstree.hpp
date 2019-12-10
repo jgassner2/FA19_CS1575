@@ -35,7 +35,12 @@ int MyBSTree<T>::size() const {
 
 template <typename T>
 bool MyBSTree<T>::isEmpty() const {
-
+  if (m_size == 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 template <typename T>
@@ -85,5 +90,6 @@ void MyBSTree<T>::printPostOrder() const {
 
 template <typename T>
 void MyBSTree<T>::print() const {
+//Just have it call the "Pretty print function" :D
 
 }
