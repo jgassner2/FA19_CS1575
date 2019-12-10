@@ -7,11 +7,8 @@
 
 template <typename T>
 MyBSTree<T>::MyBSTree() {
-  /*
-  m_root -> m_left = NULL;
-  m_root -> m_right = NULL;
-  m_size = 1;
-  */
+  m_root = NULL;
+  m_size = 0;
 }
 
 template <typename T>
