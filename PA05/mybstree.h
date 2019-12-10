@@ -28,7 +28,25 @@ class MyBSTree : public AbstractBSTree<T>
    TreeNode<T>* m_root;
    int m_size;
   public:
+    MyBSTree();
+    //Big Three
+    ~MyBSTree();
+    MyBSTree<T>& operator=(const MyBSTree<T>& rhs);
+    MyBSTree(const MyBSTree<T>& cpy);  //Copy Constructor
 
+    //Derived functions
+    int size() const;
+    bool isEmpty() const;
+    int height() const;
+    const T& getMax() const throw (Oops);
+    const T& getMin() const throw (Oops);
+    int find(const T& x) const;
+    void clear();
+    void insert(const T& x);
+    void remove(const T& x);
+    void printPreOrder() const;
+    void printPostOrder() const;
+    void print() const;
 
 };
 
