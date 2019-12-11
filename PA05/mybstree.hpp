@@ -70,7 +70,7 @@ void MyBSTree<T>::clear() {
 
 template <typename T>
 void MyBSTree<T>::insert(const T& x) {
-
+  insertElement(x,m_root);
 }
 
 template <typename T>
@@ -91,5 +91,44 @@ void MyBSTree<T>::printPostOrder() const {
 template <typename T>
 void MyBSTree<T>::print() const {
 //Just have it call the "Pretty print function" :D
+prettyPrint(m_root, 0);
+}
 
+
+//
+template <typename T>
+void prettyPrint (const TreeNode<T>* t, int pad)
+{
+ string s(pad, ' ');
+ if (t == NULL)
+     cout << endl;
+ else{
+   prettyPrint(t->m_right, pad+4);
+   cout << s << t->m_data << endl;
+   prettyPrint(t->m_left, pad+4);
+ }
+}
+
+template <typename T>
+void MyBSTree<T>::insertElement(const T& x, TreeNode<T>* &t) {
+  if (t == NULL) {
+    //m_root = new TreeNode<T>(x, NULL, NULL);  //Coudn't get parameterized constructor to work
+    t = new TreeNode<T>;
+    t->m_data = x;
+    t->m_left = NULL;
+    t->m_right = NULL;
+  }
+  else {
+    //Check to see if data goes in left subtree
+    if (x < m_root->m_data) {
+      insertElement(x,m_root->m_left);
+    }
+    //Check to see if the data goes in the right subtree
+    else if(x > m_root->m_data) {
+      insertElement(x, m_root->m_right);
+    }
+    //Duplicate data, i.e. x==m_data
+    else
+      return;
+  }
 }
