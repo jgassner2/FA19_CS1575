@@ -13,7 +13,7 @@ MyBSTree<T>::MyBSTree() {
 
 template <typename T>
 MyBSTree<T>::~MyBSTree() {
-
+  clear();
 
 }
 
@@ -65,7 +65,9 @@ int MyBSTree<T>::find(const T& x) const {
 
 template <typename T>
 void MyBSTree<T>::clear() {
-
+  clearTree(m_root);
+  m_root = NULL;
+  m_size = 0;
 }
 
 template <typename T>
@@ -120,15 +122,27 @@ void MyBSTree<T>::insertElement(const T& x, TreeNode<T>* &t) {
   }
   else {
     //Check to see if data goes in left subtree
-    if (x < m_root->m_data) {
-      insertElement(x,m_root->m_left);
+    if (x < t->m_data) {
+      insertElement(x,t->m_left);
     }
     //Check to see if the data goes in the right subtree
-    else if(x > m_root->m_data) {
-      insertElement(x, m_root->m_right);
+    else if(x > t->m_data) {
+      insertElement(x, t->m_right);
     }
     //Duplicate data, i.e. x==m_data
     else
       return;
   }
+}
+
+template <typename T>
+void MyBSTree<T>::clearTree(TreeNode<T>* &t) {
+  //Clear left tree/subtrees
+  if (t != NULL)
+    clearTree(t->m_left);
+  //Clear right tree/subtrees
+  if (t != NULL)
+    clearTree(t->m_right);
+  //Delete nodes
+  delete t;
 }
