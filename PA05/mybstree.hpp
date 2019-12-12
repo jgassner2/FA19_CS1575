@@ -30,7 +30,7 @@ MyBSTree<T>::MyBSTree(const MyBSTree<T>& cpy) {
 
 template <typename T>
 int MyBSTree<T>::size() const {
-
+  return m_size;
 }
 
 template <typename T>
@@ -50,11 +50,38 @@ int MyBSTree<T>:: height() const{
 
 template <typename T>
 const T& MyBSTree<T>:: getMax() const throw (Oops) {
-
+  try {
+    if (m_size == 0)
+     throw Oops("x");
+    else {
+      TreeNode<T>* tmp = m_root;
+      while (tmp->m_right != NULL) {
+        tmp = tmp->m_right;
+      }
+      return tmp->m_data;
+    }
+  }
+  catch (Oops) {
+    cout << endl << "Empty Tree!" << endl;
+  }
 }
 
 template <typename T>
 const T& MyBSTree<T>:: getMin() const throw (Oops) {
+  try {
+    if (m_size == 0)
+     throw Oops("x");
+    else {
+      TreeNode<T>* tmp = m_root;
+      while (tmp->m_left != NULL) {
+        tmp = tmp->m_left;
+      }
+      return tmp->m_data;
+    }
+  }
+  catch (Oops) {
+    cout << endl << "Empty Tree!" << endl;
+  }
 
 }
 
@@ -119,6 +146,7 @@ void MyBSTree<T>::insertElement(const T& x, TreeNode<T>* &t) {
     t->m_data = x;
     t->m_left = NULL;
     t->m_right = NULL;
+    m_size++;
   }
   else {
     //Check to see if data goes in left subtree
@@ -146,3 +174,5 @@ void MyBSTree<T>::clearTree(TreeNode<T>* &t) {
   //Delete nodes
   delete t;
 }
+
+void findElement(const T&x, TreeNode<T>* &t)
